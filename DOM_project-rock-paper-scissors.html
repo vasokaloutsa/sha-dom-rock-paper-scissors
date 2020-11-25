@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissors</title>
+</head>
+<body>
+   <button id='rock'> Rock</button>
+   <button id='paper'>Paper</button>
+   <button id='scissors'>Scissors</button>
+
+    <script>
+
+     let scoreComputer=0;
+     let scorePlayer=0;
+     const div=document.createElement('div');
+
+     document.body.appendChild(div);
+     let word=document.querySelector('div');
+     console.log(typeof(word));
+
+     //Create buttons event listeners
+     
+     let btnRock=document.querySelector('#rock');
+        btnRock.addEventListener('click', () => {
+            if (scorePlayer<=5 && scoreComputer<=5){
+             playRound('rock',computerPlay());
+               if (word.textContent.includes("Lose")){
+                 scoreComputer++;
+               }else if (word.textContent.includes('Win')){
+                scorePlayer++;
+               }else{
+                scoreComputer++;
+                scorePlayer++;
+            
+               }
+            }else{
+                const message=document.createElement('div');
+                document.body.appendChild(message);
+                if (scorePlayer>scoreComputer){
+                message.textContent=' Game is finished. Congratulations! You win!!! :)';
+                return;}else{
+                message.textContent=' Game is over. Computer Wins :(';
+                }
+            }
+    
+
+        });
+        
+         
+
+      let btnPaper=document.querySelector('#paper');
+         btnPaper.addEventListener('click',() => {
+            if (scorePlayer<=5 && scoreComputer<=5){
+             playRound('paper',computerPlay());
+               if (word.textContent.includes("Lose")){
+                 scoreComputer++;
+               }else if (word.textContent.includes('Win')){
+                scorePlayer++;
+               }else{
+                scoreComputer++;
+                scorePlayer++;
+            
+               }
+            }else{
+                const message=document.createElement('div');
+                document.body.appendChild(message);
+                if (scorePlayer>scoreComputer){
+                message.textContent=' Game is finished. Congratulations! You win!!! :)';
+                return;}else{
+                message.textContent=' Game is over. Computer Wins :(';
+                }
+            }
+        });
+
+       let btnScissor=document.querySelector('#scissors');
+         btnScissor.addEventListener('click',() => {
+            if (scorePlayer<=5 && scoreComputer<=5){
+             playRound('scissors',computerPlay());
+
+               if (word.textContent.includes("Lose")){
+                 scoreComputer++;
+               }else if (word.textContent.includes('Win')){
+                scorePlayer++;
+               }else{
+                scoreComputer++;
+                scorePlayer++;
+            
+               }
+            }else{
+                const message=document.createElement('div');
+                document.body.appendChild(message);
+                if (scorePlayer>scoreComputer){
+                message.textContent=' Game is finished. Congratulations! You win!!! :)';
+                return;}else{
+                message.textContent=' Game is over. Computer Wins :(';
+                }
+            }
+          });
+        
+       
+    //Create random choice for computer
+        function computerPlay(){
+            let selection=Math.random()*10;
+            if(selection<= 10/3){
+                return "paper";
+            }else if (selection>=10/3 && selection<=20/3){
+                return "rock";
+            }else{
+                return "scissors";
+            }
+           
+
+        }
+
+
+  
+         
+   
+
+    //Plays 1 round
+        function playRound(playerSelection, computerSelection){
+           
+              
+            if (playerSelection==='rock'){
+                if (computerSelection==='paper'){
+                    div.textContent= `Computer chooses paper --> You Lose! Paper beats Rock  -- Score: C${scoreComputer}:P${scorePlayer}` ;
+                    
+                }else if (computerSelection==='rock'){
+                    div.textContent= `Computer chooses rock --> It's a tie -- Score: C${scoreComputer}:P${scorePlayer}`;
+                    
+                }else{
+                    div.textContent=`Computer chooses scissors --> You Win! Rock beats Scissors -- Score: C${scoreComputer}:P${scorePlayer}`;
+                   
+                }
+            }
+
+            if (playerSelection==='paper'){
+                if (computerSelection==='paper'){
+                    div.textContent= `Computer chooses paper --> It's a tie -- Score: C${scoreComputer}:P${scorePlayer}`;
+                    
+                }else if (computerSelection==='rock'){
+                    div.textContent= ` Computer chooses rock --> You Win! Paper beats Rock -- Score: C${scoreComputer}:P${scorePlayer}`;
+                    
+                    
+                }else{
+                    div.textContent= `Computer chooses scissors --> You Lose! Scissors beat Paper -- Score: C${scoreComputer}:P${scorePlayer}`;
+                    
+                   
+                }
+            }
+
+            if (playerSelection==='scissors'){
+                if (computerSelection==='paper'){
+                    div.textContent= `Computer chooses paper -->  You Win! Scissors beat paper -- Score: C${scoreComputer}:P${scorePlayer}` ;
+                    
+                    
+                }else if (computerSelection==='rock'){
+                    div.textContent= `Computer chooses rock --> You Lose! Rock beats -- Score: C${scoreComputer}:P${scorePlayer}`;
+                    
+                }else{
+                    div.textContent= `Computer chooses scissors --> It's a tie -- Score: C${scoreComputer}:P${scorePlayer}`;
+                    
+                }
+            }
+          
+            
+            
+        }
+
+     
+
+        
+    </script>
+</body>
+</html>
